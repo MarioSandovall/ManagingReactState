@@ -6,7 +6,7 @@ import Header from "./Header";
 import Produts from './Products'
 import Detail from './Detail'
 import Cart from './Cart'
-
+import Checkout from './Checkout';
 
 import "./App.css";
 
@@ -51,6 +51,10 @@ export default function App() {
     })
   }
 
+  function emptyCart(){
+    setCart([]);
+  }
+
   return (
     <>
       <div className="content">
@@ -65,6 +69,9 @@ export default function App() {
             <Route 
               path="/:category/:id" 
               element={<Detail addToCart={addToCart} />} />
+            <Route 
+              path="checkout"
+              element={<Checkout cart={cart} emptyCart={emptyCart}/>}/>
           </Routes>
         </main>
       </div>
