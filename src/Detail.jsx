@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 
 import Spinner from "./Spinner";
@@ -19,7 +19,7 @@ export default function Detail(props) {
     if (!product) return <PageNotFound />
 
     if (error) throw error
-    
+
     return (
         <div id="detail">
             <h1>{product.name}</h1>
@@ -31,20 +31,20 @@ export default function Detail(props) {
                 onChange={e => setSku(e.target.value)}>
                 <option value="">What size?</option>
                 {
-                    product.skus.map((s)=>(
-                         <option key={s.sku} value={s.sku}>
+                    product.skus.map((s) => (
+                        <option key={s.sku} value={s.sku}>
                             {s.size}
                         </option>
                     ))
                 }
             </select>
             <p>
-                <button disabled={!sku} 
-                        className="btn btn-primary" 
-                        onClick={() => {
-                            props.addToCart(id, sku);
-                            navigate("/cart");
-                        }}>
+                <button disabled={!sku}
+                    className="btn btn-primary"
+                    onClick={() => {
+                        props.dispatch({ type: "add", id, sku });
+                        navigate("/cart");
+                    }}>
                     Add to Cart
                 </button>
             </p>
