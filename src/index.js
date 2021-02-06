@@ -5,10 +5,14 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import ErrorBoundary from "./ErrorBoundary";
 
+import { CartProvider } from './cartContext'
+
 ReactDOM.render(
   <BrowserRouter>
     <ErrorBoundary>
-      <App />
+      <CartProvider>
+        <App />
+      </CartProvider>
     </ErrorBoundary>
   </BrowserRouter>,
   document.getElementById("root")
