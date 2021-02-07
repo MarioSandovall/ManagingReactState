@@ -15,14 +15,14 @@ export default function useFetch(url) {
         const response = await fetch(baseUrl + url);
         if (response.ok) {
           const json = await response.json();
-          if(isMounted) setData(json);
+          if (isMounted) setData(json);
         } else {
           throw response;
         }
       } catch (e) {
-        if(isMounted) setError(e);
+        if (isMounted) setError(e);
       } finally {
-        if(isMounted) setLoadig(false);
+        if (isMounted) setLoadig(false);
       }
     }
     init();
@@ -33,4 +33,9 @@ export default function useFetch(url) {
   }, [url]);
 
   return { data, error, loading };
+}
+
+export function Fetch(url, children) {
+  const { data, loading, error } = useFetch(url, render);
+  return children(data, loading, error);
 }
