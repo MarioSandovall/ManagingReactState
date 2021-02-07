@@ -4,13 +4,16 @@ import { Routes, Route } from 'react-router-dom';
 import Footer from "./Footer";
 import Header from "./Header";
 import Produts from './Products'
-import Detail from './Detail'
+import Detail from './Detail.class'
 import Cart from './Cart'
-import Checkout from './Checkout';
+import Checkout from './Checkout.class';
+
+import { useCart } from './cartContext';
 
 import "./App.css";
 
 export default function App() {
+  const { dispatch } = useCart();
 
   return (
     < >
@@ -28,7 +31,7 @@ export default function App() {
               element={<Detail />} />
             <Route
               path="checkout"
-              element={<Checkout />} />
+              element={<Checkout dispatch={dispatch} />} />
           </Routes>
         </main>
       </div>
